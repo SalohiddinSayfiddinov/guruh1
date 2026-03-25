@@ -4,6 +4,7 @@ import 'package:guruh1/features/countries/presentation/provider/country_provider
 import 'package:provider/provider.dart';
 
 void main() {
+  // Edit qilindi
   runApp(const MyApp());
 }
 
