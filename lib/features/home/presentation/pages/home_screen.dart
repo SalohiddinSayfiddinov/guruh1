@@ -33,9 +33,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 context: context,
                 builder: (_) {
                   return AlertDialog(
-                    title: Text('New Gadget'),
+                    title: Text('New Smartphone'),
                     content: Column(
-                      spacing: 10.0,
+                      spacing: 11.0,
                       mainAxisSize: .min,
                       children: [
                         TextFormField(
