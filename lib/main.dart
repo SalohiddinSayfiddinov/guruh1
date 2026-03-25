@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:guruh1/features/home/presentation/pages/home_screen.dart';
-import 'package:guruh1/features/home/presentation/provider/home_provider.dart';
+import 'package:guruh1/features/countries/presentation/pages/country_screen.dart';
+import 'package:guruh1/features/countries/presentation/provider/country_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -17,11 +17,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (context) => HomeProvider()),
-        ],
-        child: HomeScreen(),
+      home: ChangeNotifierProvider(
+        create: (context) => CountryProvider(),
+        child: CountryScreen(),
       ),
     );
   }
