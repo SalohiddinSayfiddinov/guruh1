@@ -36,7 +36,7 @@ class HomeProvider extends ChangeNotifier {
       await ElectronicsRepository().createElectronics(gadget);
       isCreated = true;
     } catch (e) {
-      createError = e.toString();
+      createError = error;
     } finally {
       isCreating = false;
       notifyListeners();
