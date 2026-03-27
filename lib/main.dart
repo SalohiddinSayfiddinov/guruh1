@@ -24,3 +24,22 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+// O'zgartirish
+
+// plus -> git add .
+// habar yozamiz -> git commit -m "habar"
+// joylaymiz -> git push origin main
+
+
+// yangi repoga ulash 
+
+// git init -> .git yaratadi
+// git remote add origin <URL>
+// git push -u origin main --force
+
+// ko'pchilik bo'lib ishlash
+
+// branch ochish -> git checkout -b <nomi>
+// branchga o'tish -> git checkout <nomi>
+
