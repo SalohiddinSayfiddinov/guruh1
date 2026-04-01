@@ -42,4 +42,24 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  bool isSendingOtp = false;
+  String? otpError;
+  bool? otpResult;
+
+  Future<void> sendOtp(OtpRequest request) async {
+    isSendingOtp = true;
+    otpError = null;
+    otpResult = null;
+    notifyListeners();
+    try {
+      await AuthRepo().sendOtp(request);
+      otpResult = true;
+    } catch (e) {
+      otpError = e.toString();
+    } finally {
+      isSendingOtp = false;
+      notifyListeners();
+    }
+  }
 }

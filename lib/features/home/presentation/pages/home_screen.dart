@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:guruh1/features/auth/presentation/pages/login_screen.dart';
+import 'package:guruh1/features/auth/presentation/provider/auth_provider.dart';
 import 'package:guruh1/features/home/models/electronics_model.dart';
 import 'package:guruh1/features/home/presentation/provider/home_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -100,7 +103,28 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             child: Icon(Icons.add),
           ),
-          appBar: AppBar(title: Text('Home')),
+          appBar: AppBar(
+            title: Text('Home'),
+            leading: IconButton(
+              onPressed: () async {
+                final SharedPreferences prefs =
+                    await SharedPreferences.getInstance();
+                await prefs.remove('token');
+
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ChangeNotifierProvider(
+                      create: (context) => AuthProvider(),
+                      child: LoginScreen(),
+                    ),
+                  ),
+                  (route) => false,
+                );
+              },
+              icon: Icon(Icons.logout),
+            ),
+          ),
           body: Builder(
             builder: (context) {
               if (provider.isGetting) {

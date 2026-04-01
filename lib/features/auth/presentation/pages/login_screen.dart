@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:guruh1/features/auth/models/auth_dto.dart';
 import 'package:guruh1/features/auth/presentation/provider/auth_provider.dart';
+import 'package:guruh1/features/home/presentation/pages/home_screen.dart';
+import 'package:guruh1/features/home/presentation/provider/home_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -15,10 +18,33 @@ class _LoginScreenState extends State<LoginScreen> {
   final passwordController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    checkLogin();
+  }
+
+  @override
   void dispose() {
     usernameController.dispose();
     passwordController.dispose();
     super.dispose();
+  }
+
+  void checkLogin() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? token = prefs.getString('token');
+    if (token != null) {
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ChangeNotifierProvider(
+            create: (context) => HomeProvider(),
+            child: HomeScreen(),
+          ),
+        ),
+        (route) => false,
+      );
+    }
   }
 
   @override

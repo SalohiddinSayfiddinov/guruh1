@@ -20,11 +20,11 @@ class RegisterRequest {
 
   const RegisterRequest({
     required this.username,
-    this.email = "john_wick@gmail.com",
-    this.phone = "+998908765677",
-    this.fullName = "John Wick",
-    this.region = "tashkent",
-    this.birthYear = 2000,
+    required this.email,
+    required this.phone,
+    required this.fullName,
+    required this.region,
+    required this.birthYear,
     required this.password,
   });
 
@@ -38,5 +38,16 @@ class RegisterRequest {
       "birth_year": birthYear,
       "password": password,
     };
+  }
+}
+
+class OtpRequest {
+  final String email;
+  final String code;
+
+  OtpRequest({required this.email, required this.code});
+
+  Map<String, dynamic> toJson() {
+    return {"email": email, "code": code};
   }
 }

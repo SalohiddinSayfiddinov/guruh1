@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:guruh1/features/auth/presentation/pages/login_screen.dart';
-import 'package:guruh1/features/auth/presentation/pages/register_screen.dart';
 import 'package:guruh1/features/auth/presentation/provider/auth_provider.dart';
+import 'package:guruh1/features/new_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-// Oybek
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -21,27 +20,8 @@ class MyApp extends StatelessWidget {
       ),
       home: ChangeNotifierProvider(
         create: (context) => AuthProvider(),
-        child: RegisterScreen(),
+        child: NewScreen(),
       ),
     );
   }
 }
-
-// O'zgartirish
-
-// plus -> git add .
-// habar yozamiz -> git commit -m "habar"
-// joylaymiz -> git push origin main
-
-
-// yangi repoga ulash 
-
-// git init -> .git yaratadi
-// git remote add origin <URL>
-// git push -u origin main --force
-
-// ko'pchilik bo'lib ishlash
-
-// branch ochish -> git checkout -b <nomi>
-// branchga o'tish -> git checkout <nomi>
-
