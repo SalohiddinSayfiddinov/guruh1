@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:guruh1/features/exzam/presentation/pages/october.dart';
 import 'package:guruh1/features/exzam/presentation/pages/onbording.dart';
+import 'package:guruh1/features/exzam/presentation/pages/sign_up.dart';
 
 
 void main() {
@@ -12,7 +13,7 @@ class ExamApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:Onbording()
+      home:SignUp()
     );
   }
 }
