@@ -1,27 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:guruh1/features/countries/presentation/pages/country_screen.dart';
-import 'package:guruh1/features/countries/presentation/provider/country_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:guruh1/features/exzam/presentation/pages/october.dart';
+import 'package:guruh1/features/exzam/presentation/pages/onbording.dart';
+
 
 void main() {
-  // Edit qilindi
-  runApp(const MyApp());
+  runApp(ExamApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+class ExamApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-      ),
-      home: ChangeNotifierProvider(
-        create: (context) => CountryProvider(),
-        child: CountryScreen(),
-      ),
+      home:Onbording()
     );
   }
 }
