@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:guruh1/features/auth/models/auth_dto.dart';
-import 'package:guruh1/features/auth/presentation/provider/auth_provider.dart';
-import 'package:guruh1/features/home/presentation/pages/home_screen.dart';
-// import 'package:guruh1/features/home/presentation/provider/home_provider.dart';
-import 'package:provider/provider.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {

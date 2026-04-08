@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:guruh1/assets/images/images.dart';
 
 class October extends StatefulWidget {
   const October({super.key});
@@ -232,7 +233,7 @@ class _OctoberState extends State<October> {
           ),
           Center(
             child: Image(
-              image: AssetImage('assets/images/Group214.png'),
+              image: AssetImage(OnborImages.graph),
               height: 399,
               width: 400,
             ),

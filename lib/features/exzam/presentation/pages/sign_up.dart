@@ -3,6 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:guruh1/assets/images/images.dart';
 import 'package:guruh1/assets/images/colors.dart';
 
+import 'package:guruh1/features/auth/models/model_dio.dart';
+import 'package:guruh1/features/auth/presentation/provider/this_provaider.dart';
+import 'package:guruh1/features/exzam/presentation/pages/login.dart';
+import 'package:guruh1/features/exzam/presentation/pages/verification_cod.dart';
+import 'package:guruh1/features/exzam/presentation/pages/verifiy.dart';
+import 'package:provider/provider.dart';
+
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
 
@@ -11,8 +18,19 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final provider = context.read<ThisProvaider>();
+    });
+  }
+
   bool obscureText = true;
   bool ischecket = false;
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,6 +55,7 @@ class _SignUpState extends State<SignUp> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: TextFormField(
+                controller: nameController,
                 decoration: InputDecoration(
                   fillColor: Colors.white10,
                   border: OutlineInputBorder(
@@ -51,6 +70,7 @@ class _SignUpState extends State<SignUp> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: TextFormField(
+                controller: emailController,
                 decoration: InputDecoration(
                   fillColor: Colors.white10,
                   border: OutlineInputBorder(
@@ -65,6 +85,7 @@ class _SignUpState extends State<SignUp> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: TextFormField(
+                controller: passwordController,
                 decoration: InputDecoration(
                   fillColor: Colors.white10,
                   border: OutlineInputBorder(
@@ -115,19 +136,51 @@ class _SignUpState extends State<SignUp> {
               child: SizedBox(
                 height: 50,
                 width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor:AppColors.primaryColor,
-                    backgroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadiusGeometry.circular(5),
-                    ),
-                  ),
-                  child: Text(
-                    'Sign Up',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                  ),
+                child: Consumer<ThisProvaider>(
+                  builder: (context, provider, _) {
+                    return ElevatedButton(
+                      onPressed: () async {
+                        final request = ModelRequest(
+                          name: nameController.text.trim(),
+                          email: emailController.text.trim(),
+                          password: passwordController.text.trim(),
+                        );
+                        await context.read<ThisProvaider>().login(request);
+                        if (provider.loadingError != null) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text(provider.loadingError!)),
+                          );
+                        } else {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>VerificationCod(email: 'email')
+                            ),
+                          );
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: AppColors.primaryColor,
+                        backgroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: provider.isLoading
+                          ? SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(strokeWidth: 2),
+                            )
+                          : Text(
+                              'Sign Up',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                    );
+                  },
                 ),
               ),
             ),
@@ -176,7 +229,9 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
             ),
+            SizedBox(height: 20),
             Row(
+              mainAxisAlignment: .center,
               children: [
                 Text(
                   'Already have an account?',
@@ -187,10 +242,19 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Login()),
+                    );
+                  },
                   child: Text(
                     'Login',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600,color: Colors.blue),
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.blue,
+                    ),
                   ),
                 ),
               ],

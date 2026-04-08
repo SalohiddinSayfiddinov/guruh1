@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:guruh1/features/exzam/presentation/pages/october.dart';
-import 'package:guruh1/features/exzam/presentation/pages/onbording.dart';
+import 'package:guruh1/features/auth/presentation/provider/this_provaider.dart';
+import 'package:guruh1/features/exzam/presentation/pages/Login.dart';
 import 'package:guruh1/features/exzam/presentation/pages/sign_up.dart';
-
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(ExamApp());
+  runApp(
+    ChangeNotifierProvider(create: (_) => ThisProvaider(), child: ExamApp()),
+  );
 }
 
 class ExamApp extends StatelessWidget {
@@ -13,7 +15,9 @@ class ExamApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:SignUp()
-    );
+      home:Login()
+      );
+
+    
   }
 }

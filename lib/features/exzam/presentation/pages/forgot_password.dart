@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:guruh1/features/exzam/presentation/pages/email_sent.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
@@ -28,7 +29,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(mainAxisAlignment: .center,crossAxisAlignment: .start,spacing: 20,
+        child: Column(
+          mainAxisAlignment: .center,
+          crossAxisAlignment: .start,
+          spacing: 20,
           children: [
             Text(
               "Don't worry.\n Enter your email and we'll\n send your a link to reset your\n password.",
@@ -55,7 +59,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               height: 50,
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => EmailSent()),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white,
                   backgroundColor: Colors.blue,

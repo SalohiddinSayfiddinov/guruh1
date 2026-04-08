@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:guruh1/features/exzam/presentation/pages/forgot_password.dart';
+import 'package:guruh1/features/exzam/presentation/pages/sign_up.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -90,37 +92,67 @@ class _LoginState extends State<Login> {
           ),
           SizedBox(height: 16),
           TextButton(
-            onPressed: () {},
-            child: Text(
-              'Forgot Password?',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: Colors.blue,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ForgotPassword()),
+              );
+            },
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ForgotPassword()),
+                );
+              },
+              child: Text(
+                'Forgot Password?',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.blue,
+                ),
               ),
             ),
           ),
-          SizedBox(height: 20,),
-            Row(mainAxisAlignment: .center,
-              children: [
-                Text(
-                  'Dont have an account yet?',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.grey,
-                  ),
+          SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: .center,
+            children: [
+              Text(
+                'Dont have an account yet?',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.grey,
                 ),
-                TextButton(
-                  onPressed: () {},
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignUp()),
+                  );
+                },
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignUp()),
+                    );
+                  },
                   child: Text(
                     'Sign Up',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600,color: Colors.blue),
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.blue,
+                    ),
                   ),
                 ),
-              ],
-            ),
-          
+              ),
+            ],
+          ),
         ],
       ),
     );
