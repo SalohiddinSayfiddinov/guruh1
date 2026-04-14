@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:guruh1/features/auth/presentation/pages/login_screen.dart';
 import 'package:guruh1/features/auth/presentation/provider/auth_provider.dart';
 import 'package:guruh1/features/new_screen.dart';
 import 'package:provider/provider.dart';

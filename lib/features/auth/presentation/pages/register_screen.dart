@@ -91,6 +91,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
           ],
+      
         ),
       ),
       floatingActionButton: Consumer<AuthProvider>(
