@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:guruh1/features/auth/presentation/provider/this_provaider.dart';
-import 'package:guruh1/features/exzam/presentation/pages/Login.dart';
-import 'package:guruh1/features/exzam/presentation/pages/sign_up.dart';
+import 'package:guruh1/features/home/presentation/provider/home_provider.dart';
+import 'package:guruh1/features/home/presentation/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(
-    ChangeNotifierProvider(create: (_) => ThisProvaider(), child: ExamApp()),
-  );
+  runApp(const MyApp());
 }
 
-class ExamApp extends StatelessWidget {
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home:Login()
-      );
-
-    
+    return ChangeNotifierProvider(
+      create: (context) => HomeProvider(),
+      child: MaterialApp(debugShowCheckedModeBanner: false, home: HomeScreen()),
+    );
   }
 }
