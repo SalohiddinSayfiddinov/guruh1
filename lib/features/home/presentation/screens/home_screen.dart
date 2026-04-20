@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:guruh1/features/home/presentation/provider/home_provider.dart';
 import 'package:guruh1/features/home/presentation/screens/cart_screen.dart';
 import 'package:provider/provider.dart';
@@ -40,10 +39,7 @@ class HomeScreen extends StatelessWidget {
               final product = provider.products[index];
               return Container(
                 decoration: BoxDecoration(
-                  border: const GradientBoxBorder(
-                    gradient: LinearGradient(colors: [Colors.blue, Colors.red]),
-                    width: 3,
-                  ),
+                 
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Column(
