@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:guruh1/features/auth/presentation/provider/auth_provider.dart';
-import 'package:guruh1/features/new_screen.dart';
+import 'package:guruh1/features/home/presentation/provider/home_provider.dart';
+import 'package:guruh1/features/home/presentation/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -12,15 +12,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-      ),
-      home: ChangeNotifierProvider(
-        create: (context) => AuthProvider(),
-        child: NewScreen(),
-      ),
+    return ChangeNotifierProvider(
+      create: (context) => HomeProvider(),
+      child: MaterialApp(debugShowCheckedModeBanner: false, home: HomeScreen()),
     );
   }
 }

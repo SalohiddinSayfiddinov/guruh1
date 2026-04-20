@@ -1,45 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:guruh1/features/home/models/electronics_model.dart';
-import 'package:guruh1/features/home/repository/electronics_repository.dart';
+import 'package:guruh1/features/home/data/data.dart';
+import 'package:guruh1/features/home/models/cart.dart';
+import 'package:guruh1/features/home/models/product.dart';
 
 class HomeProvider extends ChangeNotifier {
-  bool isGetting = false;
-  String? error;
-  List<ElectronicsModel> electronics = [];
+  final List<Product> products = data.map((e) => Product.fromMap(e)).toList();
 
-  bool isCreating = false;
-  String? createError;
-  bool? isCreated;
+  final List<Cart> cart = [
+    // Cart(quantity: 1, product: Product.fromMap(data[0])),
+  ];
 
-  void getElectronics() async {
-    error = null;
-    electronics.clear();
-    isGetting = true;
-    notifyListeners();
-    try {
-      final data = await ElectronicsRepository().getElectronics();
-      electronics = data;
-    } catch (e) {
-      error = e.toString();
-    } finally {
-      isGetting = false;
-      notifyListeners();
+  void addToCart(Product product) {
+    for (int i = 0; i < cart.length; i++) {
+      final item = cart[i];
+      if (item.product.id == product.id) {
+        final newItem = Cart(quantity: item.quantity + 1, product: product);
+        cart[i] = newItem;
+        return;
+      }
     }
-  }
-
-  Future<void> createGadget(ElectronicsModel gadget) async {
-    isCreating = true;
-    createError = null;
-    isCreated = null;
-    notifyListeners();
-    try {
-      await ElectronicsRepository().createElectronics(gadget);
-      isCreated = true;
-    } catch (e) {
-      createError = error;
-    } finally {
-      isCreating = false;
-      notifyListeners();
-    }
+    final item = Cart(quantity: 1, product: product);
+    cart.add(item);
   }
 }
