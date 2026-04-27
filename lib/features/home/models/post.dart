@@ -1,26 +1,29 @@
 class Post {
-  final int id;
-  final int userId;
-  final String title;
-  final String body;
+  final String id;
+  final String name;
+  final String lastname;
+  final String city;
+  final String image;
 
   const Post({
     required this.id,
-    required this.userId,
-    required this.title,
-    required this.body,
+    required this.name,
+    required this.lastname,
+    required this.city,
+    required this.image,
   });
 
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
       id: json['id'],
-      userId: json['userId'],
-      title: json['title'],
-      body: json['body'],
+      name: json['name'],
+      lastname: json['lastname'],
+      city: json['city'],
+      image: json['image'],
     );
   }
 
   Map<String, dynamic> toJson() {
-    return {'userId': userId, 'title': title, 'body': body};
+    return {"name": name, "lastname": lastname, "city": city, "image": image};
   }
 }

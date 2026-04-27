@@ -43,6 +43,7 @@ dependencies:
   pinput: ^6.0.2
   gradient_borders: ^1.0.2
   flutter_bloc: ^9.1.1
+  chat_bubbles: ^1.9.0
   
 
 

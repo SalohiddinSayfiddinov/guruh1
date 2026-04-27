@@ -23,7 +23,35 @@ class PostCubit extends Cubit<PostState> {
       final newPost = await PostRepo().createPost(post);
       emit(
         PostOperationSuccess(
-          message: 'Successfully created post ${newPost.title}',
+          message: 'Successfully created user ${newPost.name}',
+        ),
+      );
+    } catch (e) {
+      emit(PostError(message: e.toString()));
+    }
+  }
+
+  Future<void> editPost(Post post) async {
+    emit(PostsLoading());
+    try {
+      final newPost = await PostRepo().editPost(post);
+      emit(
+        PostOperationSuccess(
+          message: 'Successfully edited user ${newPost.name}',
+        ),
+      );
+    } catch (e) {
+      emit(PostError(message: e.toString()));
+    }
+  }
+
+  Future<void> deletePost(String postId) async {
+    emit(PostsLoading());
+    try {
+      final newPost = await PostRepo().deletePost(postId);
+      emit(
+        PostOperationSuccess(
+          message: 'Successfully edited user ${newPost.name}',
         ),
       );
     } catch (e) {
