@@ -6,7 +6,8 @@ import 'package:guruh1/features/home/presentation/widgets/delete_user_dialog.dar
 import 'package:guruh1/features/home/presentation/widgets/edit_user_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final String title;
+  const HomeScreen({super.key, required this.title});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -54,6 +55,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text(widget.title)),
+      floatingActionButton: FloatingActionButton(onPressed: () {}),
       body: BlocBuilder<PostCubit, PostState>(
         builder: (context, state) {
           if (state is PostsLoading) {
