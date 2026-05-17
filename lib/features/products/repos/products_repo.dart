@@ -1,18 +1,31 @@
+import 'dart:convert';
+
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:guruh1/core/api/api.dart';
 import 'package:guruh1/features/products/models/product_model.dart';
-import 'package:hive_ce_flutter/adapters.dart';
+import 'package:http/http.dart' as http;
 
 class ProductsRepo {
-  final _box = Hive.box<Product>('productsBox');
+  Future<List<ProductModel>> getProducts() async {
+    final storage = const FlutterSecureStorage();
+    final token = await storage.read(key: 'token');
+    try {
+      final headers = {'accept': 'application/json'};
+      if (token != null) {
+        headers['Authorization'] = 'Bearer $token';
+      }
+      final response = await http.get(
+        Uri.parse("${Api.baseUrl}/products"),
+        headers: headers,
+      );
 
-  List<Product> getProducts() {
-    return _box.values.toList();
-  }
-
-  Future<void> saveProduct(Product product) async {
-    await _box.put(product.id, product);
-  }
-
-  Future<void> deleteProduct(int productId) async {
-    await _box.delete(productId);
+      final data = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        return (data as List).map((e) => ProductModel.fromJson(e)).toList();
+      }
+      throw data.toString();
+    } catch (e) {
+      rethrow;
+    }
   }
 }
