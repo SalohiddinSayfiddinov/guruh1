@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:guruh1/features/auth/models/auth_dto.dart';
 import 'package:guruh1/features/auth/repositories/auth_repository.dart';
@@ -15,5 +17,15 @@ class AuthCubit extends Cubit<AuthState> {
     // } catch (e) {
     //   emit(AuthError(message: e.toString()));
     // }
+  }
+
+  Future<void> uploadFile(File file) async {
+    emit(const AuthLoading());
+    try {
+      await repo.uploadFile(file);
+      emit(const AuthSuccess(message: 'Successfully uploaded the file'));
+    } catch (e) {
+      emit(AuthError(message: e.toString()));
+    }
   }
 }

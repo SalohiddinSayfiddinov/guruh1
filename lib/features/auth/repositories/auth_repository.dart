@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:guruh1/core/api/api.dart';
@@ -28,6 +29,33 @@ class AuthRepository {
       }
 
       throw data.toString();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> uploadFile(File file) async {
+    try {
+      final uri = Uri.parse('https://api.escuelajs.co/api/v1/files/upload');
+      final request = http.MultipartRequest('POST', uri);
+      // request.headers['Authorization'] = 'Bearer //';
+      // request.fields['first_name'] = 'first name';
+      request.files.add(
+        await http.MultipartFile.fromPath(
+          'file',
+          file.path,
+          filename: 'fintech',
+        ),
+      );
+      final streamedResponse = await request.send();
+
+      final response = await http.Response.fromStream(streamedResponse);
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        print(response.body);
+        return;
+      }
+      throw 'Failed to upload an image';
     } catch (e) {
       rethrow;
     }

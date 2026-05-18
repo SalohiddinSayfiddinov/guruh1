@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:guruh1/core/routes/app_pages.dart';
 import 'package:guruh1/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:guruh1/features/auth/presentation/screens/auth_screen.dart';
+import 'package:guruh1/features/auth/presentation/screens/file_screen.dart';
 import 'package:guruh1/features/auth/repositories/auth_repository.dart';
 import 'package:guruh1/features/home/presentation/cubit/post_cubit.dart';
 import 'package:guruh1/features/home/presentation/screens/home_screen.dart';
@@ -47,7 +48,7 @@ class RouteGenerator {
           builder: (context) {
             return BlocProvider(
               create: (context) => AuthCubit(repo: AuthRepository()),
-              child: const AuthScreen(),
+              child: const FileScreen(),
             );
           },
         );

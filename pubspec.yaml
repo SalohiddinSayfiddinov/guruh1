@@ -49,6 +49,10 @@ dependencies:
   flutter_secure_storage: ^10.2.0
   toastification: ^3.2.0
   lottie: ^3.3.3
+  image_picker: ^1.2.2
+  audioplayers: ^6.6.0
+  open_file: ^3.5.11
+
 
 dev_dependencies:
   flutter_test:
@@ -79,6 +83,7 @@ flutter:
   assets:
     - assets/images/
     - assets/animations/
+    - assets/audios/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
